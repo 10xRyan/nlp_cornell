@@ -1,6 +1,3 @@
-# AUTO-GENERATED (DO NOT MODIFY)
-# NET IDS: YR269,VMF24
-
 import logging
 from dataclasses import dataclass
 from typing import List
@@ -21,7 +18,6 @@ class RNN(Module):
         bias: bool = True,
         nonlinearity: str = "tanh",
     ):
-        """Documentation: https://pages.github.coecis.cornell.edu/cs4740/hw2-fa23/ner.nn.models.rnn.html."""
         super().__init__()
 
         assert num_layers > 0
@@ -36,8 +32,6 @@ class RNN(Module):
         if nonlinearity not in nonlinearity_dict:
             raise ValueError(f"{nonlinearity} not supported, choose one of: [tanh, relu, prelu]")
         self.nonlinear = nonlinearity_dict[nonlinearity]
-
-        # TODO-5-1
 
         self.W = nn.ModuleList([nn.Linear(embedding_dim, hidden_dim) for i in range(num_layers)])
 
@@ -60,8 +54,6 @@ class RNN(Module):
         return list(map(torch.squeeze, hidden_states))
 
     def forward(self, embeddings: torch.Tensor) -> torch.Tensor:
-        """Documentation: https://pages.github.coecis.cornell.edu/cs4740/hw2-fa23/ner.nn.models.rnn.html."""
-        # TODO-5-2
         Z = self._initial_hidden_states(batch_size=embeddings.size(dim=0), device=embeddings.device)
         V_list = []
         for i in range(embeddings.size(dim=1)):
